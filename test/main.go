@@ -4,6 +4,7 @@ import (
 	"github.com/aihohu/gotool/arrayUtil"
 	"github.com/aihohu/gotool/dateUtil"
 	"github.com/aihohu/gotool/idUtil"
+	"github.com/aihohu/gotool/randomUtil"
 	"time"
 )
 
@@ -33,4 +34,9 @@ func main() {
 	println(dateUtil.Format(time.Now(), "yyyy年MM月dd日 HH时mm分ss秒"))
 	println(dateUtil.Format(time.Now(), "yyyy-MM-dd"))
 	println(dateUtil.Format(time.Now(), "HH:mm:ss"))
+
+	for i := 0; i < 100; i++ {
+		println(randomUtil.RandomString(6))
+		println(randomUtil.RandomNumbers(6))
+	}
 }
