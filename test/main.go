@@ -5,22 +5,17 @@ import (
 	"github.com/aihohu/gotool/dateUtil"
 	"github.com/aihohu/gotool/idUtil"
 	"github.com/aihohu/gotool/randomUtil"
+	"github.com/aihohu/gotool/stringUtil"
 	"time"
 )
 
 func main() {
+	// 当前时间
 	println(dateUtil.Now())
+	// 当前日期
 	println(dateUtil.Today())
 
-	strArr := []string{"v", "b", "c"}
-	println(arrayUtil.ContainsString("a", strArr))
-
-	for i := 0; i < 2; i++ {
-		println(idUtil.SnowflakeId())
-		println(idUtil.RandomUUID())
-		println(idUtil.SimpleUUID())
-	}
-
+	// 格式化当前时间
 	println(dateUtil.FormatNow("yyyy-MM-dd HH:mm:ss"))
 	println(dateUtil.FormatNow("yyyy/MM/dd HH:mm:ss"))
 	println(dateUtil.FormatNow("yyyy.MM.dd HH:mm:ss"))
@@ -28,6 +23,7 @@ func main() {
 	println(dateUtil.FormatNow("yyyy-MM-dd"))
 	println(dateUtil.FormatNow("HH:mm:ss"))
 
+	// 格式化日期
 	println(dateUtil.Format(time.Now(), "yyyy-MM-dd HH:mm:ss"))
 	println(dateUtil.Format(time.Now(), "yyyy/MM/dd HH:mm:ss"))
 	println(dateUtil.Format(time.Now(), "yyyy.MM.dd HH:mm:ss"))
@@ -35,8 +31,21 @@ func main() {
 	println(dateUtil.Format(time.Now(), "yyyy-MM-dd"))
 	println(dateUtil.Format(time.Now(), "HH:mm:ss"))
 
-	for i := 0; i < 100; i++ {
-		println(randomUtil.RandomString(6))
-		println(randomUtil.RandomNumbers(6))
-	}
+	strArr := []string{"g", "o", "t", "o", "o", "l"}
+	// strArr 中是否存在 o
+	println(arrayUtil.ContainsString("o", strArr))
+
+	// 判断字符串是否为空
+	println(stringUtil.IsBlank("gotool"))
+	// 判断字符串是否不为空
+	println(stringUtil.IsNotBlank("gotool"))
+
+	// 生成唯一id
+	println(idUtil.SnowflakeId())
+	println(idUtil.RandomUUID())
+	println(idUtil.SimpleUUID())
+
+	// 生成随机数
+	println(randomUtil.RandomString(6))
+	println(randomUtil.RandomNumbers(6))
 }
