@@ -28,7 +28,7 @@ go get github.com/aihohu/gotool
 
 # 文档
 
-
+📖 [中文文档](https://aihohu.github.io/gotool/)
 
 
 
