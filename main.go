@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/aihohu/gotool/arrayUtil"
 	"github.com/aihohu/gotool/dateUtil"
+	"github.com/aihohu/gotool/desensitizedUtil"
 	"github.com/aihohu/gotool/idUtil"
 	"github.com/aihohu/gotool/randomUtil"
 	"github.com/aihohu/gotool/stringUtil"
@@ -45,6 +46,14 @@ func main() {
 	strArr := []string{"g", "o", "t", "o", "o", "l"}
 	// strArr 中是否存在 o
 	println(arrayUtil.ContainsString("o", strArr))
+
+	// 数据脱敏
+	println(desensitizedUtil.IdCard("110101201801010777"))
+	println(desensitizedUtil.MobilePhone("15266668888"))
+	println(desensitizedUtil.Telephone("010-88993223"))
+	println(desensitizedUtil.Email("gotool@gotool.io"))
+	println(desensitizedUtil.Address("中国北京海淀区上地十街", 6))
+	println(desensitizedUtil.Hide("0123456789", 2, 3))
 
 	// 判断字符串是否为空
 	println(stringUtil.IsBlank("gotool"))

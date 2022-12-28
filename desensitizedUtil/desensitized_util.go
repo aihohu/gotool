@@ -5,12 +5,12 @@ import (
 	"strings"
 )
 
-// Data 数据脱敏
+// Hide 数据脱敏
 // @param idCardNum 数据
 // @param front     保留：前面的front位数；从1开始
 // @param end       保留：后面的end位数；从1开始
 // @return          脱敏后的数据
-func Data(idCardNum string, front int, end int) string {
+func Hide(idCardNum string, front int, end int) string {
 	return generateDesensitized(idCardNum, front, end)
 }
 
