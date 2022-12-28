@@ -1,11 +1,12 @@
-# gotool
+# Gotool
+
 GoTool是一个小而全的Go工具类库
 
 
 
 # 安装
 
-```shell
+```bash
 go get github.com/aihohu/gotool
 ```
 
@@ -19,9 +20,16 @@ go get github.com/aihohu/gotool
 | dateUtil         | 时间工具       |
 | desensitizedUtil | 数据脱敏工具   |
 | fileUtil         | 文件工具       |
+| httpUtil         | HTTP工具       |
 | idUtil           | 唯一ID工具     |
 | randomUtil       | 随机数工具     |
 | stringUtil       | 字符串处理工具 |
+
+
+
+# 文档
+
+📖 [中文文档](https://aihohu.github.io/gotool/)
 
 
 
