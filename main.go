@@ -31,6 +31,17 @@ func main() {
 	println(dateUtil.Format(time.Now(), "yyyy-MM-dd"))
 	println(dateUtil.Format(time.Now(), "HH:mm:ss"))
 
+	// 字符串转日期
+	parse := dateUtil.Parse("2022-12-27 13:54:02")
+	now := dateUtil.Parse("2022-12-28 14:55:03")
+
+	// 判断两个日期相差的时长，只保留绝对值
+	println(dateUtil.Between(parse, now, dateUtil.Ms))
+	println(dateUtil.Between(parse, now, dateUtil.Seconds))
+	println(dateUtil.Between(parse, now, dateUtil.Minutes))
+	println(dateUtil.Between(parse, now, dateUtil.Hours))
+	println(dateUtil.Between(parse, now, dateUtil.Days))
+
 	strArr := []string{"g", "o", "t", "o", "o", "l"}
 	// strArr 中是否存在 o
 	println(arrayUtil.ContainsString("o", strArr))

@@ -5,7 +5,14 @@ import (
 	"time"
 )
 
-var yyyy, MM, dd, HH, mm, ss = "2006", "01", "02", "15", "04", "05"
+var yyyy, month, dd, hh, mm, ss = "2006", "01", "02", "15", "04", "05"
+var (
+	Ms      = "MS"
+	Seconds = "SECOND"
+	Minutes = "MINUTE"
+	Hours   = "HOUR"
+	Days    = "DAY"
+)
 
 // Now 当前时间，格式 yyyy-MM-dd HH:mm:ss
 // @return 当前时间的标准形式字符串
@@ -32,9 +39,9 @@ func NowTimeNoSeparate() string {
 func Format(dateTime time.Time, format string) string {
 
 	format = strings.ReplaceAll(format, "yyyy", yyyy)
-	format = strings.ReplaceAll(format, "MM", MM)
+	format = strings.ReplaceAll(format, "MM", month)
 	format = strings.ReplaceAll(format, "dd", dd)
-	format = strings.ReplaceAll(format, "HH", HH)
+	format = strings.ReplaceAll(format, "HH", hh)
 	format = strings.ReplaceAll(format, "mm", mm)
 	format = strings.ReplaceAll(format, "ss", ss)
 
@@ -47,11 +54,46 @@ func Format(dateTime time.Time, format string) string {
 func FormatNow(format string) string {
 
 	format = strings.ReplaceAll(format, "yyyy", yyyy)
-	format = strings.ReplaceAll(format, "MM", MM)
+	format = strings.ReplaceAll(format, "MM", month)
 	format = strings.ReplaceAll(format, "dd", dd)
-	format = strings.ReplaceAll(format, "HH", HH)
+	format = strings.ReplaceAll(format, "HH", hh)
 	format = strings.ReplaceAll(format, "mm", mm)
 	format = strings.ReplaceAll(format, "ss", ss)
 
 	return time.Now().Format(format)
+}
+
+// Parse 字符串转日期
+// @param format 日期字符串
+// @return 日期
+func Parse(format string) time.Time {
+	location, err := time.ParseInLocation("2006-01-02 15:04:05", format, time.Local)
+	if err != nil {
+		return time.Time{}
+	}
+
+	return location
+}
+
+// Between 判断两个日期相差的时长，只保留绝对值
+// @param beginDate 起始日期
+// @param endDate   结束日期
+// @param unit      相差的单位
+// @return 日期差
+func Between(beginDate time.Time, endDate time.Time, unit string) int {
+	sub := endDate.Sub(beginDate)
+
+	if unit == Ms {
+		return int(sub.Abs().Milliseconds())
+	} else if unit == Seconds {
+		return int(sub.Abs().Seconds())
+	} else if unit == Minutes {
+		return int(sub.Abs().Minutes())
+	} else if unit == Hours {
+		return int(sub.Abs().Hours())
+	} else if unit == Days {
+		return int(sub.Abs().Hours() / 24)
+	}
+
+	return 0
 }
