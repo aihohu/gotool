@@ -4,3 +4,5 @@
 * [数据脱敏工具](zh-cn/desensitizedUtil)
 * [文件工具](zh-cn/fileUtil)
 * [HTTP工具](zh-cn/httpUtil)
+* [唯一id工具](zh-cn/idUtil)
+
