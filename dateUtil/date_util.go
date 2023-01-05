@@ -63,6 +63,20 @@ func FormatNow(format string) string {
 	return time.Now().Format(format)
 }
 
+// FormatInLocation 格式化时区日期
+// @param dateTime 日期
+// @param format 日期格式：支持yyyy-MM-dd HH:mm:ss
+// @param name   时区：如 Asia/Shanghai
+// @return 格式化后的日期
+func FormatInLocation(dateTime time.Time, format string, name string) string {
+	location, err := time.LoadLocation(name)
+	if err != nil {
+		return Format(dateTime, format)
+	}
+
+	return Format(dateTime.In(location), format)
+}
+
 // Parse 字符串转日期
 // @param format 日期字符串
 // @return 日期
