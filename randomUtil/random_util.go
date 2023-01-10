@@ -3,7 +3,6 @@ package randomUtil
 import (
 	"crypto/rand"
 	"math/big"
-	mrand "math/rand"
 )
 
 const letterNumber = "0123456789"
@@ -32,7 +31,7 @@ func RandomInt(min, max int64) int64 {
 func RandomString(length int) string {
 	b := make([]byte, length)
 	for i := range b {
-		b[i] = letterRunes[mrand.Intn(len(letterRunes))]
+		b[i] = letterRunes[RandomLimitInt(int64(len(letterRunes)))]
 	}
 	return string(b)
 }
@@ -43,7 +42,7 @@ func RandomString(length int) string {
 func RandomNumbers(length int) string {
 	b := make([]byte, length)
 	for i := range b {
-		b[i] = letterNumber[mrand.Intn(len(letterNumber))]
+		b[i] = letterNumber[RandomLimitInt(int64(len(letterNumber)))]
 	}
 	return string(b)
 }
