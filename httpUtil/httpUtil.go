@@ -26,7 +26,7 @@ func HttpGet(url string) []byte {
 		return nil
 	}
 
-	log.Println("Get: ", len(body), string(body))
+	//log.Println("Get: ", len(body), string(body))
 	return body
 }
 
@@ -57,7 +57,7 @@ func HttpPost(urlStr string, data []byte) []byte {
 		return nil
 	}
 
-	log.Println("Post: ", len(body), string(body))
+	//log.Println("Post: ", len(body), string(body))
 	return body
 }
 
@@ -85,6 +85,6 @@ func HttpPut(urlStr string, data []byte) []byte {
 		return nil
 	}
 
-	log.Println("put: ", len(body), string(body))
+	//log.Println("put: ", len(body), string(body))
 	return body
 }
