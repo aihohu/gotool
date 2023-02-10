@@ -77,11 +77,18 @@ func FormatInLocation(dateTime time.Time, format string, name string) string {
 	return Format(dateTime.In(location), format)
 }
 
-// Parse 字符串转日期
-// @param format 日期字符串
+// ParseUTCFormatTZ 时间日期字符串转UTC日期
+// @param dateTime 日期字符串
 // @return 日期
-func Parse(format string) time.Time {
-	location, err := time.ParseInLocation("2006-01-02 15:04:05", format, time.Local)
+func ParseUTCFormatTZ(dateTime string) string {
+	return Parse(dateTime).UTC().Format("2006-01-02T15:04:05Z07:00")
+}
+
+// Parse 字符串转日期
+// @param dateTime 日期字符串
+// @return 日期
+func Parse(dateTime string) time.Time {
+	location, err := time.ParseInLocation("2006-01-02 15:04:05", dateTime, time.Local)
 	if err != nil {
 		return time.Time{}
 	}
