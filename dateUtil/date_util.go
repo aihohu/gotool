@@ -118,3 +118,65 @@ func Between(beginDate time.Time, endDate time.Time, unit string) int {
 
 	return 0
 }
+
+// BeginOfDay 一天的开始
+func BeginOfDay(beginDate time.Time) time.Time {
+	return time.Date(beginDate.Year(), beginDate.Month(), beginDate.Day(), 0, 0, 0, 0, beginDate.Location())
+}
+
+// EndOfDay 一天的结束
+func EndOfDay(beginDate time.Time) time.Time {
+	return time.Date(beginDate.Year(), beginDate.Month(), beginDate.Day(), 23, 59, 59, 0, beginDate.Location())
+}
+
+// BeginOfMonth 获取某月的开始时间
+func BeginOfMonth(beginDate time.Time) time.Time {
+	date := beginDate.AddDate(0, 0, -beginDate.Day()+1)
+	return BeginOfDay(date)
+}
+
+// EndOfMonth 获取某月的结束时间
+func EndOfMonth(beginDate time.Time) time.Time {
+	date := BeginOfMonth(beginDate).AddDate(0, 1, -1)
+	return EndOfDay(date)
+}
+
+// Yesterday 昨天
+func Yesterday() time.Time {
+	return time.Now().AddDate(0, 0, -1)
+}
+
+// Tomorrow 明天
+func Tomorrow() time.Time {
+	return time.Now().AddDate(0, 0, 1)
+}
+
+// LastWeek 上周
+func LastWeek() time.Time {
+	return time.Now().AddDate(0, 0, -7)
+}
+
+// NextWeek 下周
+func NextWeek() time.Time {
+	return time.Now().AddDate(0, 0, 7)
+}
+
+// LastMonth 上个月
+func LastMonth() time.Time {
+	return time.Now().AddDate(0, -1, 0)
+}
+
+// NextMonth 下个月
+func NextMonth() time.Time {
+	return time.Now().AddDate(0, 1, 0)
+}
+
+// LastYear 去年
+func LastYear() time.Time {
+	return time.Now().AddDate(-1, 0, 0)
+}
+
+// NextYear 明年
+func NextYear() time.Time {
+	return time.Now().AddDate(1, 0, 0)
+}
