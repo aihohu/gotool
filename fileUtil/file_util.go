@@ -32,3 +32,9 @@ func SaveMkdirAllFile(file *multipart.FileHeader, dst string) error {
 	_, err = io.Copy(out, src)
 	return err
 }
+
+// FileExist 验证文件是否存在
+func FileExist(path string) bool {
+	_, err := os.Lstat(path)
+	return !os.IsNotExist(err)
+}
