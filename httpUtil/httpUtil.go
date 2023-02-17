@@ -7,6 +7,11 @@ import (
 	"net/http"
 )
 
+type Header struct {
+	Key   string
+	Value string
+}
+
 // HttpGet GET 请求
 func HttpGet(url string) []byte {
 	resp, err := http.Get(url)
