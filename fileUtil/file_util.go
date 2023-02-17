@@ -100,15 +100,15 @@ func DownloadFileRequest(url, filePath string, headers []httpUtil.Header) bool {
 func DownloadRenameFileRequest(url, filePath, fileName string, headers []httpUtil.Header) bool {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		fmt.Printf("DownloadRenameFileRequest failed, err:%v\n\n", err)
+		return false
+	}
 
 	for _, header := range headers {
 		req.Header.Add(header.Key, header.Value)
 	}
 
-	if err != nil {
-		fmt.Printf("DownloadRenameFileRequest failed, err:%v\n\n", err)
-		return false
-	}
 	resp, _ := client.Do(req)
 	defer resp.Body.Close()
 

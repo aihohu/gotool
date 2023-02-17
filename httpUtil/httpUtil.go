@@ -2,6 +2,7 @@ package httpUtil
 
 import (
 	"bytes"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -11,6 +12,13 @@ type Header struct {
 	Key   string
 	Value string
 }
+
+var (
+	Get    = "GET"
+	Post   = "POST"
+	Put    = "PUT"
+	Delete = "DELETE"
+)
 
 // HttpGet GET 请求
 func HttpGet(url string) []byte {
@@ -92,4 +100,46 @@ func HttpPut(urlStr string, data []byte) []byte {
 
 	//log.Println("put: ", len(body), string(body))
 	return body
+}
+
+func HttpRequest(method, url string) []byte {
+	return HttpRequestHeader(method, url, nil, nil)
+}
+
+func HttpRequestBody(method, url string, body io.Reader) []byte {
+	return HttpRequestHeader(method, url, body, nil)
+}
+
+func HttpRequestHeader(method, url string, body io.Reader, headers []Header) []byte {
+	client := &http.Client{}
+
+	req, err := http.NewRequest(method, url, body)
+	if err != nil {
+		fmt.Printf("HttpRequest failed, err:%v\n\n", err)
+		return nil
+	}
+
+	for _, header := range headers {
+		req.Header.Add(header.Key, header.Value)
+	}
+
+	resp, err := client.Do(req)
+	defer resp.Body.Close()
+	if err != nil {
+		log.Printf("HttpRequest failed, err:%v\n\n", err)
+		return nil
+	}
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+			println(err.Error())
+		}
+	}(resp.Body)
+
+	respBody, err := io.ReadAll(resp.Body)
+	if len(respBody) == 0 {
+		return nil
+	}
+
+	return respBody
 }
