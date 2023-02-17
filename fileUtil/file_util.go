@@ -70,7 +70,8 @@ func DownloadRenameFile(url, filePath, fileName string) bool {
 
 	file, err := os.Create(filePath + fileName)
 	if err != nil {
-		panic(err)
+		fmt.Printf("DownloadFileRename failed, err:%v\n\n", err)
+		return false
 	}
 	// 获得文件的writer对象
 	writer := bufio.NewWriter(file)
@@ -116,7 +117,8 @@ func DownloadRenameFileRequest(url, filePath, fileName string, headers []httpUti
 
 	file, err := os.Create(filePath + fileName)
 	if err != nil {
-		panic(err)
+		fmt.Printf("DownloadRenameFileRequest failed, err:%v\n\n", err)
+		return false
 	}
 	// 获得文件的writer对象
 	writer := bufio.NewWriter(file)
