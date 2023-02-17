@@ -68,6 +68,16 @@ func DownloadRenameFile(url, filePath, fileName string) bool {
 	// 获得get请求响应的reader对象
 	reader := bufio.NewReaderSize(res.Body, 32*1024)
 
+	// 文件路径不存在，则创建
+	_, err = os.Stat(filePath)
+	if os.IsNotExist(err) {
+		err = os.MkdirAll(filepath.Dir(filePath), os.ModePerm)
+		if err != nil {
+			fmt.Printf("DownloadRenameFileRequest failed, err:%v\n\n", err)
+			return false
+		}
+	}
+
 	file, err := os.Create(filePath + fileName)
 	if err != nil {
 		fmt.Printf("DownloadFileRename failed, err:%v\n\n", err)
@@ -114,6 +124,16 @@ func DownloadRenameFileRequest(url, filePath, fileName string, headers []httpUti
 
 	// 获得get请求响应的reader对象
 	reader := bufio.NewReaderSize(resp.Body, 32*1024)
+
+	// 文件路径不存在，则创建
+	_, err = os.Stat(filePath)
+	if os.IsNotExist(err) {
+		err = os.MkdirAll(filepath.Dir(filePath), os.ModePerm)
+		if err != nil {
+			fmt.Printf("DownloadRenameFileRequest failed, err:%v\n\n", err)
+			return false
+		}
+	}
 
 	file, err := os.Create(filePath + fileName)
 	if err != nil {
